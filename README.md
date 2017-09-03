@@ -1,7 +1,7 @@
 # Basic Identicon Generator
 
-It uses a very simple algorithm to generate a github style identicon.
-As a result, it's not guaranteed to unique when used at scale.
+Generate a github style identicon for a given string.
+Since it's backed by a very simple algorithm, it's not guaranteed to be unique when used at scale.
 
 # Samples
 
