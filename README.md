@@ -1,6 +1,15 @@
-# Identicon Generator
+# Basic Identicon Generator
 
-Basic Identicon generator.
+It uses a very simple algorithm to generate a github style identicon.
+As a result, it's not guaranteed to unique when used at scale.
+
+# Samples
+
+![image](https://user-images.githubusercontent.com/2018617/29999916-41242160-9027-11e7-91c3-2610f49bf3cc.png)
+
+![image](https://user-images.githubusercontent.com/2018617/29999919-56873268-9027-11e7-933c-0878e0e42e8c.png)
+
+![image](https://user-images.githubusercontent.com/2018617/29999920-644ae548-9027-11e7-8f22-69dd2e21f841.png)
 
 # License
 Copyright 2017 Nish Tahir

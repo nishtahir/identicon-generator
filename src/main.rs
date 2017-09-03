@@ -8,14 +8,14 @@ use std::fs::File;
 use std::path::Path;
 
 fn main() {
-    let input = "nishtahir";
+    let input = "asdasasdasa";
     let mut sha = Sha256::new();
     let mut digest = vec![0u8; sha.output_bytes()];
     
     sha.input_str(input);
     sha.result(digest.as_mut_slice());
 
-    let image_size: u32 = 500;
+    let image_size: u32 = 250;
     let tiles_per_row: usize = 5;
     let tile_size = image_size / tiles_per_row as u32;
 
