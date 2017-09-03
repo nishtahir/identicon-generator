@@ -1,0 +1,8 @@
+[package]
+name = "image-generator"
+version = "0.1.0"
+authors = ["Nish Tahir <nishtahir@outlook.com>"]
+
+[dependencies]
+  image = "0.12.3"
+  rust-crypto = "0.2.36"
