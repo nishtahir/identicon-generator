@@ -7,12 +7,23 @@ use crypto::sha2::Sha256;
 use std::fs::File;
 use std::path::Path;
 
+use std::env;
+
 fn main() {
-    let input = "asdasasdasa";
+
+    let args: Vec<_> = env::args().collect();
+    if args.len() > 1 {
+        for i in 1..args.len() {
+            generate_identicon(&args[i]);
+        }
+    }
+}
+
+fn generate_identicon(value : &str) {
     let mut sha = Sha256::new();
     let mut digest = vec![0u8; sha.output_bytes()];
     
-    sha.input_str(input);
+    sha.input_str(value);
     sha.result(digest.as_mut_slice());
 
     let image_size: u32 = 250;
@@ -50,6 +61,6 @@ fn main() {
         *pixel = image::Rgb(rgb);
     }
 
-    let ref mut fout = File::create(&Path::new("image.png")).unwrap();
+    let ref mut fout = File::create(&Path::new(&format!("{}.png", value))).unwrap();
     let _ = image::ImageRgb8(image_buffer).save(fout, image::PNG);
 }
