@@ -9,12 +9,8 @@ use std::fs::File;
 use std::env;
 
 fn main() {
-
-    let args: Vec<_> = env::args().collect();
-    if args.len() > 1 {
-        for i in 1..args.len() {
-            generate_identicon(&args[i]);
-        }
+    for arg in env::args().skip(1) {
+        generate_identicon(&arg);
     }
 }
 
