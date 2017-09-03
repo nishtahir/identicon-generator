@@ -6,7 +6,6 @@ use crypto::sha2::Sha256;
 
 use std::fs::File;
 use std::path::Path;
-use std::vec::Vec;
 
 fn main() {
     let input = "nishtahir";
@@ -34,6 +33,14 @@ fn main() {
             tiles[i][j] = if digest[index] % 2 == 0 { color} else { white }
         }
     }
+
+    // mirror image vertically
+    for i in 0..2 {
+        for j in 0..5 {            
+            tiles[4 - i][j] = tiles[i][j];
+        }
+    }
+
     for (x, y, pixel) in image_buffer.enumerate_pixels_mut() {
         let xx = x / tile_size;
         let yy = y / tile_size;
