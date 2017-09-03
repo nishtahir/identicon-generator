@@ -5,7 +5,6 @@ use crypto::digest::Digest;
 use crypto::sha2::Sha256;
 
 use std::fs::File;
-use std::path::Path;
 
 use std::env;
 
@@ -61,6 +60,6 @@ fn generate_identicon(value : &str) {
         *pixel = image::Rgb(rgb);
     }
 
-    let ref mut fout = File::create(&Path::new(&format!("{}.png", value))).unwrap();
+    let ref mut fout = File::create(format!("{}.png", value)).unwrap();
     let _ = image::ImageRgb8(image_buffer).save(fout, image::PNG);
 }
