@@ -8,6 +8,9 @@ use std::fs::File;
 
 use std::env;
 
+const IMAGE_SIZE: u32 = 250;
+const TILES_PER_ROW: usize = 5;
+
 fn main() {
     for arg in env::args().skip(1) {
         generate_identicon(&arg);
@@ -21,17 +24,15 @@ fn generate_identicon(value : &str) {
     sha.input_str(value);
     sha.result(digest.as_mut_slice());
 
-    let image_size: u32 = 250;
-    let tiles_per_row: usize = 5;
-    let tile_size = image_size / tiles_per_row as u32;
+    let tile_size = IMAGE_SIZE / TILES_PER_ROW as u32;
 
 
-    let mut image_buffer = image::ImageBuffer::new(image_size, image_size);
+    let mut image_buffer = image::ImageBuffer::new(IMAGE_SIZE, IMAGE_SIZE);
     
     let color = [digest[0], digest[1], digest[2]];
     let white = [254, 254, 254];
 
-    let mut tiles = vec![vec![[0; 3]; tiles_per_row]; tiles_per_row];
+    let mut tiles = vec![vec![[0; 3]; TILES_PER_ROW]; TILES_PER_ROW];
 
     for i in 0..5 {
         for j in 0..5 {
@@ -57,5 +58,5 @@ fn generate_identicon(value : &str) {
     }
 
     let ref mut fout = File::create(format!("{}.png", value)).unwrap();
-    let _ = image::ImageRgb8(image_buffer).save(fout, image::PNG);
+    image::ImageRgb8(image_buffer).save(fout, image::PNG).unwrap();
 }
